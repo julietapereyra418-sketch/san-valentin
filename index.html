@@ -35,14 +35,15 @@ button:hover{
 transform:scale(1.1);
 }
 
-#sobre{
-margin-top:50px;
+#sobre,#razones,#pronostico{
+margin-top:30px;
 font-size:20px;
 display:none;
 color:#800040;
 max-width:90%;
 margin-left:auto;
 margin-right:auto;
+text-align:left;
 }
 
 .corazon{
@@ -74,26 +75,68 @@ position:relative;
 
 <h1>💌 Para mi amor ❤️</h1>
 
-<button onclick="abrirSobre()">Abrir sobre</button>
+<!-- Música automática -->
+<audio autoplay loop>
+  <source src="https://cdn.jsdelivr.net/gh/julietapereyra418-boceto/san-valentin/ThoseEyes.mp3" type="audio/mpeg">
+</audio>
 
+<!-- Botones principales -->
+<button onclick="abrirSobre()">Abrir sobre</button>
+<button onclick="abrirRazones()">4 razones por qué eres mi elección perfecta</button>
+<button onclick="abrirPronostico()">Pronóstico para este 14 de febrero</button>
+
+<!-- Sobre -->
 <div id="sobre">
 Después de una exhaustiva búsqueda entre millones de personas he encontrado la persona perfecta.
 Según fuentes cercanas (mi corazón), eres la persona perfecta para un San Valentín lleno de amor,
 risas y momentos inolvidables 💘
 </div>
 
+<!-- Razones -->
+<div id="razones">
+1️⃣ Por como me haces cuando estoy a tu lado: "porque tu sola presencia me transmite una paz que no encuentro en ningún lugar"<br><br>
+2️⃣ Por tu sonrisa y forma de ser: "Esa que tiene el poder de iluminar mis días grises y cambiarme el ánimo"<br><br>
+3️⃣ Porque eres mi mayor apoyo: "Por estar ahí en los momentos difíciles creyendo en mí incluso cuando yo dejo de hacerlo"<br><br>
+4️⃣ Por los pequeños detalles: "Desde los mensajes bonitos hasta cuando te acuerdas de mis cosas favoritas"
+</div>
+
+<!-- Pronóstico -->
+<div id="pronostico">
+• 100% de posibilidades de cariño y risas<br>
+• Altas posibilidades de una cita especial<br>
+• ADVERTENCIA⚠️: puede haber exceso de amor 💘
+</div>
+
+<!-- Contador -->
 <div id="contador"></div>
 
 <h2>¿Quieres ser mi San Valentín? 💖</h2>
-
 <button onclick="alert('Sabía que dirías que sí 😍')">Sí 💘</button>
 <button id="no">No 😏</button>
 
 <script>
+// Función abrir sobre
 function abrirSobre(){
 document.getElementById("sobre").style.display="block";
+document.getElementById("razones").style.display="none";
+document.getElementById("pronostico").style.display="none";
 }
 
+// Función abrir razones
+function abrirRazones(){
+document.getElementById("razones").style.display="block";
+document.getElementById("sobre").style.display="none";
+document.getElementById("pronostico").style.display="none";
+}
+
+// Función abrir pronóstico
+function abrirPronostico(){
+document.getElementById("pronostico").style.display="block";
+document.getElementById("sobre").style.display="none";
+document.getElementById("razones").style.display="none";
+}
+
+// Corazones cayendo
 function crearCorazon(){
 const corazon=document.createElement("div");
 corazon.classList.add("corazon");
@@ -106,6 +149,7 @@ setTimeout(()=>{corazon.remove();},5000);
 }
 setInterval(crearCorazon,300);
 
+// Cuenta regresiva
 const fecha=new Date("Feb 14, 2026 00:00:00").getTime();
 const contador=document.getElementById("contador");
 
@@ -121,6 +165,7 @@ const segundos=Math.floor((distancia%(1000*60))/1000);
 contador.innerHTML="⏳ Faltan "+dias+" días "+horas+"h "+minutos+"m "+segundos+"s para el 14 de febrero 💕";
 },1000);
 
+// Botón NO que huye
 const botonNo=document.getElementById("no");
 botonNo.addEventListener("mouseover",function(){
 const x=Math.random()*300-150;
